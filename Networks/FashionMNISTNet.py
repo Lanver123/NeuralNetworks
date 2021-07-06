@@ -49,28 +49,28 @@ class FashionMNISTNet(pl.LightningModule):
         acc = preds.eq(targets).sum().float() / targets.size(0)
 
         # Log the accuracy and loss values to the tensorboard
-        self.log('loss_{}'.format(mode), loss)
-        self.log('acc_{}'.format(mode), acc)
+        self.log('{}_loss'.format(mode), loss)
+        self.log('{}_acc'.format(mode), acc)
 
-        return {'loss': loss}
+        return {'loss': loss, 'acc': acc}
 
     def training_step(self, batch, batch_idx):
         return self.general_step(batch, batch_idx, "training")
 
     def validation_step(self, batch, batch_idx):
-        return self.general_step(batch, batch_idx, "validation")
+        return self.general_step(batch, batch_idx, "val")
 
     def test_step(self, batch, batch_idx):
         return self.general_step(batch, batch_idx, "test")
 
     def validation_epoch_end(self, outputs):
         # Average the loss over the entire validation data from it's mini-batches
-        avg_loss = torch.stack([x['val_loss'] for x in outputs]).mean()
-        avg_acc = torch.stack([x['val_acc'] for x in outputs]).mean()
+        avg_loss = torch.stack([x['loss'] for x in outputs]).mean()
+        avg_acc = torch.stack([x['acc'] for x in outputs]).mean()
 
         # Log the validation accuracy and loss values to the tensorboard
-        self.log('val_loss', avg_loss)
-        self.log('val_acc', avg_acc)
+        self.log('avg_val_loss', avg_loss)
+        self.log('avg_val_acc', avg_acc)
 
     def configure_optimizers(self):
         optimizer = self.hparams['optimizer'](self.model.parameters(), lr=self.hparams['learning_rate'])
