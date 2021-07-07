@@ -1,5 +1,5 @@
 from Networks.Autoencoder.Autoencoder import Autoencoder
-from Dataset_Code.UnlabeledMNIST import UnlabeledMNIST
+from Datasets.UnlabeledMNIST import UnlabeledMNIST
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import EarlyStopping
 import torch

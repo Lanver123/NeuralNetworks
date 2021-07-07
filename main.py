@@ -1,6 +1,6 @@
 from Trainer.NetworkTrainer import NetworkTrainer
 import torch.optim
-from Dataset_Code.FashionMNIST import FashionMNISTDataModule
+from Datasets.FashionMNIST import FashionMNISTDataModule
 from Networks.FashionMNISTNet import FashionMNISTNet
 
 
