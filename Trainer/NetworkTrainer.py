@@ -5,6 +5,10 @@ from pytorch_lightning.callbacks import EarlyStopping
 
 
 class NetworkTrainer:
+    """
+    This class is useful for conventional trainings with labeled train, validation and test set. If your implementation
+    is any different e.g: Autoencoder with unlabeled data. Your best bet is to use pytorch_lightning.trainer as it is
+    """
     def __init__(self, hparams, data_module_class, model_class, model_name, restore_model=False):
         self.gpus = 1
         self.hparams = hparams

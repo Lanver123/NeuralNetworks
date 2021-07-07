@@ -16,7 +16,7 @@ if __name__ == '__main__':
     }
 
     trainer = NetworkTrainer(hparams=hparams, model_name="fashion_mnist_{}".format(str(hparams)),
-                             model_class=FashionMNISTNet, data_module_class=FashionMNISTDataModule, restore_model=True)
+                             model_class=FashionMNISTNet, data_module_class=FashionMNISTDataModule, restore_model=False)
     trainer.setup()
-    #trainer.train_validate(save_model=True)
-    trainer.test_model()
+    trainer.train_validate(save_model=True)
+    #trainer.test_model()
