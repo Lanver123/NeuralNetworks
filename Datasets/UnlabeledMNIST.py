@@ -10,9 +10,6 @@ from torch.utils.data import DataLoader, random_split
     # Unlabeled train
 # TODO: Train ENCODER-DECODER architecture using error as squared distance between input and output pixels
 # TODO: Freeze ENCODER and train a classifier with the 100 labeled images
-# TODO: Validation set (100 images) > 50% accuracy
-# TODO: Test set (100 images) > 50% accuracy
-
 
 class UnlabeledMNIST(pl.LightningDataModule):
     def __init__(self, batch_size=4):
